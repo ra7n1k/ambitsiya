@@ -6,7 +6,7 @@
 It can display information of speed, gears, engine RPS, fuel left, battery left and control a winch.
 
 # How to Use
-You can build this project using [Visual Studio Code](https://code.visualstudio.com/download) and its [extension](https://marketplace.visualstudio.com/items?itemName=NameousChangey.lifeboatapi).
+You can build this project using [Visual Studio Code](https://code.visualstudio.com/download) with its [extension](https://marketplace.visualstudio.com/items?itemName=NameousChangey.lifeboatapi) or download from [releases](https://github.com/ra7n1k/ambitsiya/releases).
 And you can use the codes in your game to refer to below:
 
 ## `Main.lua`

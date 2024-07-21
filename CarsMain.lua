@@ -55,7 +55,7 @@ require("Libs.DrawLargeText")
 
 ticks = 0
 function onTick()
-    pressed = input.getBool(1)
+    touched = input.getBool(1)
     inputX = input.getNumber(1)
     inputY = input.getNumber(2)
     speed = math.floor(input.getNumber(3) * 3.6)
@@ -66,8 +66,8 @@ function onTick()
     parking = input.getBool(2)
     ticks = ticks + 1
 
-    winchUp = pressed and inputX >= w / 2 + 2 and inputX <= w / 2 + 2 + 4 and inputY >= 1 - 1 and inputY <= 1 + 4 - 1
-    winchDown = pressed and inputX >= w / 2 - 5 and inputX <= w / 2 - 5 + 4 and inputY >= 1 - 1 and inputY <= 1 + 4 - 1
+    winchUp = touched and inputX >= w / 2 + 2 and inputX <= w / 2 + 2 + 4 and inputY >= 1 - 1 and inputY <= 1 + 4 - 1
+    winchDown = touched and inputX >= w / 2 - 5 and inputX <= w / 2 - 5 + 4 and inputY >= 1 - 1 and inputY <= 1 + 4 - 1
 
 
     if winchUp == true then

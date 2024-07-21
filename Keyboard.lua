@@ -75,20 +75,20 @@ end
 symbolsTab = false
 alphabets = false
 symobls = 0
-function iR(rX, rY, rW, rH, t) return t and X > rX and Y > rY and X < rX + rW and Y < rY + rH end
+function iR(rX, rY, rW, rH, t) return t and inputX > rX and inputY > rY and inputX < rX + rW and inputY < rY + rH end
 
 function ir(rX, u, rY) return iR(rX + u * 9, rY, 9, 10, touched) end
 
-function gN(...)
+function getNumbers(...)
     local a = {}
     for b, c in ipairs({ ... }) do a[b] = input.getNumber(c) end; return table.unpack(a)
 end
 
 function onTick()
-    W, H, X, Y = gN(1, 2, 3, 4)
+    inputW, inputH, inputX, inputY = getNumbers(1, 2, 3, 4)
     touched = input.getBool(1)
-    xPos = W / 2 - 46
-    yPos = (H - 49) / 2
+    xPos = inputW / 2 - 46
+    yPos = (inputH - 49) / 2
     oneKey = ir(xPos, 0, yPos)
     twoKey = ir(xPos, 1, yPos)
     threeKey = ir(xPos, 2, yPos)
@@ -189,7 +189,7 @@ function onTick()
     if commaKey then signal = 40 end
     if periodKey then signal = 41 end
     alphabets = tab
-    output.setNumber(9, signal)
+    output.setNumber(1, signal)
 end
 
 keys = "1234567890qwertyuiopasdfghjklzxcvbnm ,.!@#$%^&*()_{}[]:;\"\'+-=<>/?"

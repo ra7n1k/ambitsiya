@@ -14,7 +14,7 @@ This is the main system for cars. The following table is the list of I/O.
 | In/Out | Type | Number | Use | Name in Code |
 | - | - | - | - | - |
 | In | Bool | 1 | Is screen touched | `touched` |
-| In | Bool | 2 | State of parking brake | `parking` |
+| In | Bool | 2 | Status of parking brake | `parking` |
 | In | Num | 1 | Touched point of X | `inputX` |
 | In | Num | 2 | Touched point of Y | `inputY` |
 | In | Num | 3 | Speed (m/s) | `speed` |
@@ -29,7 +29,7 @@ This is the main system for cars. The following table is the list of I/O.
 This is an image of *Eskadron Group* (our fictitious company) logo.
 
 ## `Keyboard.lua`
-This is a keyboard input system for your project. There is a QWERTY array keyboard and outputs with number. The following table is the list of I/O.
+This is a keyboard input system for your project. There is a QWERTY array keyboard and numbered output. The following table is the list of I/O.
 | In/Out | Type | Number | Use | Name in Code |
 | - | - | - | - | - |
 | In | Composite | 1 | Is screen touched | `touched` |

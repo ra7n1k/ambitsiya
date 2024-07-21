@@ -17,7 +17,7 @@
 do
     ---@type Simulator -- Set properties and screen sizes here - will run once when the script is loaded
     simulator = simulator
-    simulator:setScreen(1, "3x1")
+    simulator:setScreen(1, "3x2")
     simulator:setProperty("ExampleNumberProperty", 123)
 
     -- Runs every tick just before onTick; allows you to simulate the inputs changing
@@ -48,71 +48,27 @@ end
 -- try require("Folder.Filename") to include code from another file in this, so you can store code in libraries
 -- the "LifeBoatAPI" is included by default in /_build/libs/ - you can use require("LifeBoatAPI") to get this, and use all the LifeBoatAPI.<functions>!
 
-require("Libs.DrawCustomText")
-require("Libs.DrawLargeText")
+text = ""
+letters = "1234567890qwertyuiopasdfghjklzxcvbnm ,.!@#$%^&*()_{}[]:;\"\'+-=<>/?"
 
 ticks = 0
 function onTick()
-    pressed = input.getBool(1)
-    inputX = input.getNumber(1)
-    inputY = input.getNumber(2)
-    speed = math.floor(input.getNumber(3) * 3.6)
-    gear = math.floor(input.getNumber(4))
-    rps = math.floor(input.getNumber(5))
-    fuel = math.floor(input.getNumber(6))
-    battery = math.floor(input.getNumber(7) * 100)
+    pulse = input.getBool(1)
+    value = input.getNumber(1)
+
+    if pulse then
+        if value > 2 and value < #letters + 2 then
+            text = text .. string.sub(letters, value - 2, value - 2)
+        elseif value == 1 then
+            text = string.sub(text, 1, -2)
+        elseif value == 2 then
+            text = text .. "\n"
+        end
+    end
+
     ticks = ticks + 1
-
-    winchUp = pressed and inputX >= w / 2 + 2 and inputX <= w / 2 + 2 + 4 and inputY >= 1 - 1 and inputY <= 1 + 4 - 1
-    winchDown = pressed and inputX >= w / 2 - 5 and inputX <= w / 2 - 5 + 4 and inputY >= 1 - 1 and inputY <= 1 + 4 - 1
-
-
-    if winchUp == true then
-        output.setBool(1, true)
-    else
-        output.setBool(1, false)
-    end
-
-    if winchDown == true then
-        output.setBool(2, true)
-    else
-        output.setBool(2, false)
-    end
 end
 
 function onDraw()
-    w = screen.getWidth()
-    h = screen.getHeight()
-    screen.setColor(255, 255, 255)
-    drawLargeText(2, math.floor((h - 17) / 2), speed)
-    screen.setColor(32, 32, 32)
-    screen.drawText(2, math.floor((h - 17) / 2) + 14, "km/h")
-    if gear == 0 then
-        screen.drawText(w - 5, math.floor((h - 29) / 2), "R")
-    elseif gear == 1 then
-        screen.drawText(w - 5, math.floor((h - 29) / 2), "N")
-    elseif gear == 2 then
-        screen.drawText(w - 5, math.floor((h - 29) / 2), "D")
-    end
-    screen.drawText(w - #tostring(rps) * 5 - 15, math.floor((h - 29) / 2) + 8, rps .. "RPS")
-    screen.drawText(w - #tostring(fuel) * 5 - 5, math.floor((h - 29) / 2) + 16, fuel .. "L")
-    screen.drawText(w - #tostring(battery) * 5 - 5, math.floor((h - 29) / 2) + 24, battery)
-    drawCustomText(w - 5, math.floor((h - 29) / 2) + 24, "%")
-    if winchDown == true then
-        screen.setColor(0, 64, 0)
-    else
-        screen.setColor(0, 255, 0)
-    end
-    screen.drawRectF(w / 2 - 5, 1, 5, 5)
-    screen.setColor(255, 255, 255)
-    screen.drawText(w / 2 - 5 + 1, 1, "+")
-
-    if winchUp == true then
-        screen.setColor(64, 0, 0)
-    else
-        screen.setColor(255, 0, 0)
-    end
-    screen.drawRectF(w / 2 + 1 + 1, 1, 5, 5)
-    screen.setColor(255, 255, 255)
-    screen.drawText(w / 2 + 1 + 2, 1, "-")
+    screen.drawText(1, 1, text)
 end

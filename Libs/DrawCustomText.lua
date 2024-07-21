@@ -4,7 +4,7 @@ function drawCustomText(cX, cY, text, r, g, b, a)
         if a then
             screen.setColor(r, g, b, a)
         end
-        screen.setColor(r, g, b)
+        screen.setColor(gammaFix(r, g, b))
     end
     local texts = {}
     for i = 0, #text do
